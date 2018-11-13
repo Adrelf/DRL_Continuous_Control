@@ -1,7 +1,4 @@
 # DRL_Continuous_Control
- Train a double-jointed arm to reach target locations
-
-# DRL-navigation
 Train a double-jointed arm that can move to target locations. The goal of this agent is to maintain its position at the target location for as many time steps as possible.
 The deep reinforcement learning algorithm is based on actor-critic method (DDPG).
 
