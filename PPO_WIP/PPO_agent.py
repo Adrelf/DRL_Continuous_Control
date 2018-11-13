@@ -5,15 +5,10 @@ import numpy as np
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-# convert outputs of parallelEnv to inputs to pytorch neural net
 # this is useful for batch processing especially on the GPU
 def preprocess_batch(images):
-  #list_of_images = np.asarray(images)
-  #if len(list_of_images.shape) < 5:
-  #  list_of_images = np.expand_dims(list_of_images, 1)
-  #batch_input = np.swapaxes(list_of_images, 0, 1)
   batch_input = torch.from_numpy(images).float().unsqueeze(0).to(device)
-  return batch_input #torch.from_numpy(batch_input).float().to(device)
+  return batch_input
 
 
 # collect trajectories for a parallelized parallelEnv object
@@ -51,11 +46,8 @@ def collect_trajectories(envs, policy, tmax=200, nrand=5, action_size=4):
     # probs will only be used as the pi_old
     # no gradient propagation is needed
     # so we move it to the cpu
-    #probs = policy(batch_input, action).squeeze().cpu().detach().numpy()
     action, probs, entropy = policy(batch_input)
     action = np.array(action)
-    #action = np.clip(probs*2-1, -1, 1)
-    # advance the game (0=no action)
     # we take one action and skip game forward
     env_info = envs.step(action)[brain_name]
     fr1 = env_info.vector_observations[0]  # get the next state
@@ -110,25 +102,19 @@ def clipped_surrogate(policy, old_probs, states, actions, rewards,
 
   # convert everything into pytorch tensors and move to gpu if available
   actions = torch.tensor(actions, dtype=torch.float, device=device)
-  #old_probs = torch.tensor(old_probs, dtype=torch.float, device=device)
   rewards = torch.tensor(rewards_normalized, dtype=torch.float, device=device)
 
   # convert states to policy (or probability)
-  #new_probs = states_to_prob(policy, states, actions)
   action, log_prob, entropy = states_to_prob(policy, states)
 
   # ratio for clipping
-  #log_prob = torch.mean(log_prob,dim=2)[0]
   ratio = (log_prob[:,0] - tensor(old_probs)).exp()
-  #ratio = torch.sum(new_probs / old_probs , dim=1)
   # clipped function
   clip = torch.clamp(ratio, 1 - epsilon, 1 + epsilon)
   clipped_surrogate_value = torch.min(ratio*rewards, clip*rewards)
   # Compute entropy ==> - sum(p(x).log(p(x)))
-  #entropy = -torch.sum(new_probs* torch.log(new_probs + 1.e-10), dim=1)
   policy_loss = torch.min(clip, clipped_surrogate_value).mean(0) + beta * entropy.mean()
-  #print(actions)
-  return policy_loss #torch.mean(clipped_surrogate_value + beta * entropy)
+  return policy_loss
 
 
 import torch
@@ -175,27 +161,3 @@ class Policy(nn.Module):
     log_prob = torch.sum(log_prob, dim=1, keepdim=True)
     entropy = torch.sum(dist.entropy(), dim=1, keepdim=True)
     return action, log_prob, entropy
-    #return F.sigmoid(self.fc3(x))
-
-
-
-def layer_init(layer, w_scale=1.0):
-    nn.init.orthogonal_(layer.weight.data)
-    layer.weight.data.mul_(w_scale)
-    nn.init.constant_(layer.bias.data, 0)
-    return layer
-
-
-class TwoLayerFCBodyWithAction(nn.Module):
-    def __init__(self, state_dim, action_dim, hidden_units=(64, 64), gate=F.relu):
-      super(TwoLayerFCBodyWithAction, self).__init__()
-      hidden_size1, hidden_size2 = hidden_units
-      self.fc1 = layer_init(nn.Linear(state_dim, hidden_size1))
-      self.fc2 = layer_init(nn.Linear(hidden_size1 + action_dim, hidden_size2))
-      self.gate = gate
-      self.feature_dim = hidden_size2
-
-    def forward(self, x, action):
-      x = self.gate(self.fc1(x))
-      phi = self.gate(self.fc2(torch.cat([x, action], dim=1)))
-      return phi
