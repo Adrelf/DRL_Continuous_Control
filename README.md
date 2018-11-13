@@ -5,7 +5,7 @@
 Train a double-jointed arm that can move to target locations. The goal of this agent is to maintain its position at the target location for as many time steps as possible.
 The deep reinforcement learning algorithm is based on actor-critic method (DDPG).
 
-![alt text](https://github.com/Adrelf/DRL_Continuous_Control/images/reacher.gif)
+![alt text](https://github.com/Adrelf/DRL_Continuous_Control//blob/master/images/reacher.gif)
         
       
 # The Environment 
