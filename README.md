@@ -24,6 +24,7 @@ The environment is determinist.
 
 # Algorithm
 DDPG with hyperparameters tuning.
+
 PPO ==> WIP.
  
 # Getting started
