@@ -23,8 +23,8 @@ The environment is determinist.
     - The agent must get an average score of +30 over 100 consecutive episodes.
 
 # Algorithm
-DDPG with hyperparameters tuning
-PPO ==> WIP
+DDPG with hyperparameters tuning.
+PPO ==> WIP.
  
 # Getting started
 Step 1: Install ML-agents ==> https://github.com/Unity-Technologies/ml-agents and follow the instructions here ==> https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation.md.
