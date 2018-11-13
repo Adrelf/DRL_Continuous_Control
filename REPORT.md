@@ -24,10 +24,10 @@ Hyperparamters
 
 # Performance assessment
 
-Solved Requirements: Considered solved when the average reward is greater than or equal to +13 over 100 consecutive trials.
+Solved Requirements: Considered solved when the average reward is greater than or equal to +30 over 100 consecutive trials.
 
 
-  + Performance for DQN Agent w/o PER.
+  + Performance for DDPG Agent.
 Environment not solved. Average score after 2000 episodes: 10.62
 
 ![alt text](https://github.com/Adrelf/DRL_Continuous_Control/blob/master/images/Perfo_Reacher.png)
