@@ -12,12 +12,12 @@ Instead of waiting until the end of the episode, we make an update at each step 
 # Model architecture
 The model is very simple and composed of 2 fully connected layer with leaky relu activation for each network.
 
-* Actor model architecture <\br>
-state => leaky_relu(FC1(state)) ==> tanh(leaky_relu(FC2(FC1))) ==> action <\br>
+* Actor model architecture
+> state => leaky_relu(FC1(state)) ==> tanh(leaky_relu(FC2(FC1))) ==> action \
 By applying a tanh function in output, we ensure that the action values are in the range [-1,1]
 
-* Critc model architecture <\br>
-state + action => leaky_relu(FC1(batchnorm(state)) ==> leaky_relu(FC2(FC1+action))) ==> value function <\br>
+* Critc model architecture
+> state + action => leaky_relu(FC1(batchnorm(state)) ==> leaky_relu(FC2(FC1+action))) ==> value function
 
 
 # Hyperparameters tuning
