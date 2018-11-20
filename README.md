@@ -41,19 +41,19 @@ PPO ==> WIP.
      source activate drlnd
  ```
  * Install requirements:
-        ```
-        * clone git https://github.com/Adrelf/DRL_Continuous_Control.git
-        * cd DRL_Continuous_Control
-        * pip install -e .
-        ```
+ ```
+     clone git https://github.com/Adrelf/DRL_Continuous_Control.git
+     cd DRL_Continuous_Control
+     pip install -e .
+  ```
  * Download the [Unity Environment!] (https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)   
 Then, place the file in the DRL_Continuous_Control/ folder in this repository, and unzip (or decompress) the file.
 
 # Instructions
  * To train an agent, please use the following command:
-        ```
-        $python main_DDPG.py
-        ```
+  ```
+      python main_DDPG.py
+  ```
  with the fowolling hyper-parameters:
  
  Parameters | Value | Description
