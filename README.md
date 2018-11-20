@@ -30,25 +30,26 @@ PPO ==> WIP.
  * Python 3.6 or higher
  * PyTorch
  * Create (and activate) a new environment with Python 3.6:
-        ```javascript
-        conda create --name drlnd python=3.6
+        ```
+        conda create --name drlnd python=3.6<br/>
         source activate drlnd
         ```
  * Install requirements:
-        ```javascript
-        clone git https://github.com/Adrelf/DRL_Continuous_Control.git
-        cd DRL_Continuous_Control
-        pip install -e .
+        ```
+        clone git https://github.com/Adrelf/DRL_Continuous_Control.git <br/>
+        cd DRL_Continuous_Control<br/>
+        pip install -e .<br/>
         ```
  * Download the [Unity Environment!] (https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)   
 Then, place the file in the DRL_Continuous_Control/ folder in this repository, and unzip (or decompress) the file.
 
 # Instructions
  * To train an agent, please use the following command:
-        ```javascript
+        ```
         $python main_DDPG.py
         ```
  with the fowolling hyper-parameters:
+ 
  Parameters | Value | Description
 ----------- | ----- | -----------
 BUFFER_SIZE | int(1e6) | replay buffer size
