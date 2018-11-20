@@ -20,7 +20,13 @@ The environment is determinist.
     - The agent must get an average score of +30 over 100 consecutive episodes.
 
 # Algorithm
-DDPG with hyperparameters tuning.
+DDPG (Deep Deterministic Policy Gradient) is an hybrid method: Actor Critic. We use two neural networks:
+
+ * a Critic that measures how good the action taken is (value-based). The value function maps each state action pair to a value which quantifies how is good to be / go to another state. The value function calculates what is the maximum expected future reward given a state and an action.
+ 
+ * an Actor that controls how our agent behaves (policy-based). We directly optimize the policy without using a value function. This is useful when the action space is continuous or stochastic.<br/>
+ 
+Instead of waiting until the end of the episode, we make an update at each step (TD Learning). The Critic observes our action and provides feedback in order to update our policy and be better at playing that game.<br/>
 
 PPO ==> WIP.
  
@@ -31,14 +37,14 @@ PPO ==> WIP.
  * PyTorch
  * Create (and activate) a new environment with Python 3.6:
         ```
-        conda create --name drlnd python=3.6<br/>
-        source activate drlnd
+        * conda create --name drlnd python=3.6
+        * source activate drlnd
         ```
  * Install requirements:
         ```
-        clone git https://github.com/Adrelf/DRL_Continuous_Control.git <br/>
-        cd DRL_Continuous_Control<br/>
-        pip install -e .<br/>
+        * clone git https://github.com/Adrelf/DRL_Continuous_Control.git
+        * cd DRL_Continuous_Control
+        * pip install -e .
         ```
  * Download the [Unity Environment!] (https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)   
 Then, place the file in the DRL_Continuous_Control/ folder in this repository, and unzip (or decompress) the file.
