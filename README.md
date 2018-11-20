@@ -25,14 +25,41 @@ DDPG with hyperparameters tuning.
 PPO ==> WIP.
  
 # Getting started
-Step 1: Install ML-agents ==> https://github.com/Unity-Technologies/ml-agents and follow the instructions here ==> https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation.md.
 
-Step 2: Install Python (only version >3 is supported) and PyTorch.
-
-Step 3: Clone this repository.
-
-Step 4: Download the Unity Environment ==> https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Linux.zip
+## Dependencies
+ * Python 3.6 or higher
+ * PyTorch
+ * Create (and activate) a new environment with Python 3.6:
+        ```javascript
+        conda create --name drlnd python=3.6
+        source activate drlnd
+        ```
+ * Install requirements:
+        ```javascript
+        clone git https://github.com/Adrelf/DRL_Continuous_Control.git
+        cd DRL_Continuous_Control
+        pip install -e .
+        ```
+ * Download the [Unity Environment!] (https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)   
 Then, place the file in the DRL_Continuous_Control/ folder in this repository, and unzip (or decompress) the file.
 
-To train an agent, please use the following command:
-$python main_DDPG.py
+# Instructions
+ * To train an agent, please use the following command:
+        ```javascript
+        $python main_DDPG.py
+        ```
+ with the fowolling hyper-parameters:
+ Parameters | Value | Description
+----------- | ----- | -----------
+BUFFER_SIZE | int(1e6) | replay buffer size
+BATCH_SIZE | 1024 | minibatch size
+GAMMA | 0.99 | discount factor
+TAU | 1e-3 | for soft update of target parameters
+LR_ACTOR | 1e-4 | learning rate of the actor
+LR_CRITIC | 1e-3 | learning rate of the critic
+WEIGHT_DECAY | 0 | L2 weight decay
+NUM_AGENTS | 20 | Number of agents
+fc1_units | 128 | Number of nodes in first hidden layer for actor
+fc2_units | 56 | Number of nodes in second hidden layer for actor
+fc1_units |256 | Number of nodes in first hidden layer for critic
+fc2_units | 128 | Number of nodes in second hidden layer for critic
