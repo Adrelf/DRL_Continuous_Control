@@ -36,10 +36,10 @@ PPO ==> WIP.
  * Python 3.6 or higher
  * PyTorch
  * Create (and activate) a new environment with Python 3.6:
-        ```
-        * conda create --name drlnd python=3.6
-        * source activate drlnd
-        ```
+ ```
+     conda create --name drlnd python=3.6
+     source activate drlnd
+ ```
  * Install requirements:
         ```
         * clone git https://github.com/Adrelf/DRL_Continuous_Control.git
